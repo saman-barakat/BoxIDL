@@ -78,15 +78,11 @@ public interface FoldersApi {
     )
     default ResponseEntity<Void> getFoldersIdItems(
         @Parameter(name = "folder_id", description = "The unique identifier that represent a folder.  The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL `https://_*.app.box.com/folder/123` the `folder_id` is `123`.  The root folder of a Box account is always represented by the ID `0`.", required = true, in = ParameterIn.PATH) @PathVariable("folder_id") String folderId,
-        @Parameter(name = "fields", description = "A comma-separated list of attributes to include in the response. This can be used to request fields that are not normally returned in a standard response.  Be aware that specifying this parameter will have the effect that none of the standard fields are returned in the response unless explicitly specified, instead only fields for the mini representation are returned, additional to the fields requested.  Additionally this field can be used to query any metadata applied to the file by specifying the `metadata` field as well as the scope and key of the template to retrieve, for example `?field=metadata.enterprise_12345.contractTemplate`.", in = ParameterIn.QUERY) @Valid @RequestParam(value = "fields", required = false) List<String> fields,
         @Parameter(name = "usemarker", description = "Specifies whether to use marker-based pagination instead of offset-based pagination. Only one pagination method can be used at a time.  By setting this value to true, the API will return a `marker` field that can be passed as a parameter to this endpoint to get the next page of the response.", in = ParameterIn.QUERY) @Valid @RequestParam(value = "usemarker", required = false) Boolean usemarker,
         @Parameter(name = "marker", description = "Defines the position marker at which to begin returning results. This is used when paginating using marker-based pagination.  This requires `usemarker` to be set to `true`.", in = ParameterIn.QUERY) @Valid @RequestParam(value = "marker", required = false) String marker,
-        @Parameter(name = "offset", description = "The offset of the item at which to begin the response.  Queries with offset parameter value exceeding 10000 will be rejected with a 400 response.", in = ParameterIn.QUERY) @Valid @RequestParam(value = "offset", required = false, defaultValue = "0") Long offset,
-        @Max(1000L) @Parameter(name = "limit", description = "The maximum number of items to return per page.", in = ParameterIn.QUERY) @Valid @RequestParam(value = "limit", required = false) Long limit,
-        @Parameter(name = "boxapi", description = "The URL, and optional password, for the shared link of this item.  This header can be used to access items that have not been explicitly shared with a user.  Use the format `shared_link=[link]` or if a password is required then use `shared_link=[link]&shared_link_password=[password]`.  This header can be used on the file or folder shared, as well as on any files or folders nested within the item.", in = ParameterIn.HEADER) @RequestHeader(value = "boxapi", required = false) String boxapi,
-        @Parameter(name = "sort", description = "Defines the **second** attribute by which items are sorted.  Items are always sorted by their `type` first, with folders listed before files, and files listed before web links.  This parameter is not supported for marker-based pagination on the root folder (the folder with an ID of `0`).", in = ParameterIn.QUERY) @Valid @RequestParam(value = "sort", required = false) String sort,
-        @Parameter(name = "direction", description = "The direction to sort results in. This can be either in alphabetical ascending (`ASC`) or descending (`DESC`) order.", in = ParameterIn.QUERY) @Valid @RequestParam(value = "direction", required = false) String direction
-    ) {
+        @Parameter(name = "offset", description = "The offset of the item at which to begin the response.  Queries with offset parameter value exceeding 10000 will be rejected with a 400 response.", in = ParameterIn.QUERY) @Valid @RequestParam(value = "offset", required = false) Long offset,
+        @Parameter(name = "sort", description = "Defines the **second** attribute by which items are sorted.  Items are always sorted by their `type` first, with folders listed before files, and files listed before web links.  This parameter is not supported for marker-based pagination on the root folder (the folder with an ID of `0`).", in = ParameterIn.QUERY) @Valid @RequestParam(value = "sort", required = false) String sort
+   ) {
 
         //Start Time:
         //End Time:
@@ -96,7 +92,7 @@ public interface FoldersApi {
 
         //
 
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+        return new ResponseEntity<>(HttpStatus.OK);
 
     }
 
