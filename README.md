@@ -49,16 +49,16 @@ El objetivo de este ejercicio es implementar código de validación que verifiqu
      IF usemarker==true AND folder_id==0 THEN NOT sort;
      ZeroOrOne(usemarker==true, offset);
      
-## Instructions:   
+## Instrucciones:   
 
 - **Step 0:** Clona/descarga el proyecto y ábrelo en IntelliJ.
 - **Step 1:** Abre la interfaz Java “**FoldersApi**“ ubicada en el paquete "org.openapitools.api". Revisa el código y asegúrate de entenderlo. Pregunta al profesor en caso de dudas.
 - **Step 2:** Asegúrate de entender las dependencias entre parámetros que se deben implementar, resaltadas en la captura de pantalla mostrada arriba. Pregunta al profesor si tienes dudas.
 - **Step 3:** Antes de empezar a programar, añade la hora de inicio en la sección de comentarios “**Start time**”.
 - **Step 4:** Añade el código de validación para las dependencias resaltadas en la sección de comentarios “**Add validation code here**”. Cada bloque de validación debe devolver un código de estado HTTP 400 con un mensaje de error simple. **Ejemplo:** Si un documento requiere que p1 debe ser mayor que p2, entonces un posible código de validación podría ser el siguiente:
-
-     if (! (p1 > p2) )
-         return new ResponseEntity("p1 debe ser mayor que p2", HttpStatus.BAD_REQUEST);
+ 
+      if (! (p1 > p2) )
+         return new ResponseEntity("p1 must be greater than p2", HttpStatus.BAD_REQUEST);
          
 - **Step 5:** Prueba el código usando un cliente como Postman o la documentación interactiva generada por Swagger (disponible en (http://localhost:8083/swagger-ui/index.html). Recuerda que la aplicación está funcionando en el puerto 8083.
 - **Step 6:** Una vez implementado y probado el código de validación para todas las dependencias, indica la hora de finalización en la sección de comentarios "**End time**".
